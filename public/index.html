@@ -1,0 +1,86 @@
+<!DOCTYPE Html>
+<html>
+    <head>
+        <title>Conference</title>
+        <link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <link href="css/materialize.css" rel="stylesheet" type="text/css">
+
+        <script src="js/jquery/jquery.min.js"></script>
+
+    </head>
+
+    <body>
+        <script src="js/materialize.js"></script>
+        <div id="main"> 
+            <div id="header">
+                <div class="col s12 m4 l4" id="logo"><img src="img/logo1.jpg" alt="logo"  height="182"></div>
+            </div>
+            <hr/>
+            <div id="navigation">
+                    <ul>
+                        <li class="rollover"><a href="#">Home</a></li>
+                        <li class="rollover"><a href="stream.html">Video Conference</a></li>  
+                        <li class="rollover"><a href="#">FAQ</a></li> 
+                        <li class="rollover"><a href="#">Contact</a></li>                    
+                        <li class="rollover"><a href="#">About</a></li> 
+                    </ul>
+            </div>
+
+            <div class="grid ">
+                <div id="text" class="row">
+                    <div id="bar" class= "col s12 m3 l2 ">
+                        <div class="bluetxt" id="linktxt">
+                            <button id="start" class="bluetxt section">Change Name/Resume</button>
+                            <div class="divider"></div>
+                            <button id="end" class="bluetxt section">Leave conference Room</button>
+                        </div>
+                    </div>
+                    <div class="col s12 m9 l5" id="text2">
+                        <div class="contentTXT" id="text2txt">
+                            <div class='bluetxt' id="nick"><i>your default name is anonymous, to change it, type /nick {new name}</i>
+                                </div>
+                            <div class="chat-container"> 
+                                <div id="messages"></div>
+                            </div>
+							<form>
+                            <div class="input-field">
+                                <input id="message" type="text"/>
+                                <label for="chat">chat</label>
+                            </div>
+                            
+							</form>
+
+                        </div>
+                    </div>
+                    <div id="img" class="col s12 m12 l5">
+                        <h3>Avartar Area</h3>
+                        <div class="col s2">
+                            <img src="img/icon-user-default.png" alt="image3" width="145" >
+                            <p> dummy description of staff</p>
+                        </div>	
+						<div class="balloon left">
+						<div class="">
+						//handle left 
+						</div>
+                    </div>
+					<div class="balloon right">
+						<div class="">
+						//handle right
+						</div>
+                    </div>
+					
+					</div>
+                </div>
+             </div> 
+
+            
+        
+		
+        <audio src="alert.ogg"/>
+			<script src="/socket.io/socket.io.js"></script>
+			<script src="js/jquery.slimscroll.min.js"></script>
+			<script src="js/chat.js"></script>
+
+    </body>
+</html>

@@ -1,0 +1,68 @@
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+.metro {
+  width: 980px;
+  margin: 0 auto;
+  padding: 0 20px;
+  background: url('/img/background.jpg') no-repeat;
+  background-size: 100% 700px;
+  background-origin: content-box;
+  
+}
+.description {
+  margin: 10px 0;
+}
+.me{
+  padding: 0px 0px 0px 30px ;
+
+  background: url('../img/user-black.png')5px 5px no-repeat;
+  margin-left:1px;
+}
+#message {
+  padding-left: 35px;
+  background: url('../img/mail-black.png') rgb(255, 255, 255) 5px 5px no-repeat;
+}
+#content p {
+  background-color: rgba(255, 255, 255, .5 ) !important;
+  color: #fff !important;
+}
+.show-grid .row [class*="span"] {
+  line-height: 40px;
+  background: rgba(193, 179, 123, 0.52);
+  text-align: center;
+  min-height: 10px !important;
+}
+.color-stack li,
+#icon-list li {
+  margin-bottom: 5px;
+}
+.example > img {
+  margin: 5px;
+  display: inline-block;
+}
+.example .image-container {
+  margin: 10px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.layout {
+  min-height: 100%;
+  position: relative;
+}
+header {
+  height: 45px;
+  position: relative;
+}
+footer {
+  width: 100%;
+  height: 25px;
+}
+@media only screen and (max-width: 640px) {
+  .prettyprint,
+  .example {
+    display: none;
+  }
+}

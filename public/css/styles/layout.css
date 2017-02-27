@@ -1,0 +1,172 @@
+/*layout of the default page*/
+
+
+body{
+	color: steelblue;
+	font-family:sans-serif;
+	
+	}
+div.pageContainer {
+	left:0px;
+	top:0px;
+	z-index:-1;
+	position:absolute;
+	background: linear-gradient(to bottom, lightsteelblue 75%,white 99%);
+	width:1348px;
+	height:100%;
+	}
+h1 {
+	text-shadow:-4px 4px 6px dimgrey;
+	font-size: 100%;
+	text-align: center;
+	}
+img.header {
+	position: absolute;
+	top: 20px;
+	left: 200px
+	}
+div.header {
+	z-index:1;
+    position: absolute;
+	top: 30px;
+	left:0px;
+	width: 100%;
+	height: 200px;
+	background-color: steelblue;
+	border: 0px;
+	}
+nav.topNav {
+	position: absolute;
+	left: 12%; 
+	right:12%;
+	bottom:0px;
+	background-color:#003777;
+	height:50px; 
+	
+
+	}
+
+	
+ul.menu {
+	float:left;
+	height:50px;
+	position:relative;
+	
+	}
+
+.menu li {
+	display:inline;
+	position:relative;
+	width:20%;
+	}
+.menu li:hover{
+	
+	color:#fff; 
+	text-decoration:none;
+	}
+
+.menu a {
+	display:inline;
+	float:left;
+	font-family:'proxima_nova_rgregular'; 
+	font-size:19px; 
+	line-height:19px; 
+	color:#fff; 
+	font-weight:normal;
+	text-decoration:none;
+	text-transform:uppercase;
+	text-align:center;
+	padding:10px 0 10px; 
+	width: 160px;
+	height:30px;
+	font-style:normal;
+	position:relative;
+	width:;
+	}
+.menu li a:active {
+	color:steelblue;
+	background-color:#7f1d2d;
+	}
+
+.menu li a:hover {
+	background-color:#7f1d2d;
+	display:inline-block;
+	float:left;
+	font-size:19px; 
+	line-height:19px; 
+	color:#ff5e77; 
+	font-weight:normal;
+	padding:10px 0 10px; 
+	text-align:center;
+	text-decoration:none;
+	text-transform:uppercase;
+	}	
+	
+div.contentContainer {
+	background: linear-gradient(to bottom, gray 5%, lightskyblue 20%, white 100%);
+	position: absolute;
+	top:0px;
+	left: 12%;
+	right: 12%;
+	height: 650px;
+	padding: 5px 20px ;
+	border-radius: 5px;
+	border-collapse;
+	}
+ul.buttonsContainer  {
+	position: absolute;
+	width:120px;
+	right:12%;
+	top:0px;
+	height: 100px;
+	}
+div.titlePanel {
+    position: relative;
+	height:20px;
+	width: 100%;
+	color: #003777;
+	background-color: gray;
+	border: gray solid;
+	font-size:16pt;
+	}
+	span {
+	color:white;
+	font-style: arial;
+	text-decoration:bold;}
+div.intro {
+    position: relative;
+	
+	top:200px;
+	width: 100%;
+;
+	
+	}
+div.col1 {
+    position:relative;
+	float: left;
+	width: 33%;
+;
+	
+	height:100%;
+	}
+div.col2 {
+    position:relative;
+	float: left;
+	width: 33%;
+	height:100%;
+;
+;
+	}
+div.sideNav {
+    position: relative;
+	float: left;
+	width: 30%;
+;
+	
+	height:100%;
+	}
+div.colsContainer{
+	position:absolute;
+	bottom:0px;
+	
+	width:100%;}

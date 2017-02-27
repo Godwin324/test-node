@@ -1,0 +1,146 @@
+.update{
+	width: 100%;
+	border-width:0px;
+	
+}
+textarea.update {
+	height: 100px;
+	
+}
+form.jobform{
+	border: rgb(161, 0, 36) solid;
+	border-width: 5px 5px 0px 0px;
+	
+}
+.input{
+	
+	width: 100%;
+}
+.centered
+{
+	padding: 10px 20px 10px 20px ;
+	background-color: #efefef;
+}
+.category{
+	background-color:rgb(229, 229, 229);
+	border:none;
+	font-size:1em;
+}
+.input-control{
+	display:inline!important;
+}
+
+p{
+	display:inline-block;
+}
+p.line{
+	display:inline!important;
+
+}
+.content-section{
+	display: block;
+	 height: 525px;
+}
+form #queri{
+	border-radius:50px;
+	font-size: 1.5em;
+	padding: 10px 10px 10px 10px;
+}
+#query:focus
+{
+	text-decoration: none;
+	margin: 0px 0px 0px 0px;
+	border:0px;
+	box-shadow: none;
+}
+footer{
+	bottom:0px!important;
+}
+#go{
+	left:50px!important;
+}
+.search{
+	display: block;
+position: relative;
+padding: 10px 20px;
+text-decoration: none;
+color: #eeeeee;
+background-color: #3D3D3D;
+border-collapse: collapse;
+}
+.drop:hover {
+	color: #eeeeee;
+	background-color: #262626!important;
+}
+.search:hover{
+	background-color: #262626!important;
+}
+.drop{
+	line-height: 14px;
+	color:#363636;
+	background-color: rgb(229,229,229) !important;
+	padding:4px 32px !important;
+	border:0px;
+}
+@media screen and (min-width: 500px){
+.centered {
+	
+	position: relative ;
+padding: 20px 50px 20px 50px !important;
+border: solid 2px #a10024 !important;
+border-radius:10px;
+width:80%;
+left:10%;
+
+}
+}
+form.jobform{
+	background-color:white!important;
+	margin:0px 18% 0px 17%;
+	padding-top: 20px;
+	
+}
+section{
+	position:absolute:
+	z-index:1;
+
+}
+p{
+	background-color: transparent!
+}
+.submit{
+
+	background-image: url(../../images/arrow.jpg);
+	background-size: 20px 25px;
+}
+.contact{
+		color:black;
+	    padding: 20px 40px 20px 60px;
+    border: 1px solid rgb(204, 204, 204);
+    position: relative;
+    margin: 0px 0px 10px;
+    background-color: rgb(253, 253, 253) !important;
+    min-height: 150px;
+}
+.jobform{
+	background-color:white;
+	color:black;
+	    padding: 20px 40px 20px 60px;
+    border: 1px solid rgb(204, 204, 204);
+    position: relative;
+    margin: 0px 0px 10px;
+
+    min-height: 150px;
+}
+
+.panel{
+	position:relative;
+	right:5px;
+	width: 70%;
+	padding: 20px 40px 20px 60px;
+border: 1px solid rgb(204, 204, 204);
+margin: 0px 0px 10px;
+background-color: rgb(253, 253, 253) !important;
+min-height: 100px;
+}
+
