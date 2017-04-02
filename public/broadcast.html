@@ -1,0 +1,249 @@
+<!DOCTYPE Html>
+<html>
+    <head>
+
+        <meta name="keywords" content="JavaScript, WebRTC" />
+        <meta name="description" content="WebRTC codelab" />
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+
+
+        <style>
+        </style>
+
+        <script src='js/lib/adapter.js'></script>
+        <title>Conference</title>
+        <link href="favicon.ico" type="image/x-icon" rel="shortcut icon">
+        <link href="css/styles.css" rel="stylesheet" type="text/css">
+        <link href="css/materialize.css" rel="stylesheet" type="text/css">
+
+        <script src="js/jquery/jquery.min.js"></script>
+
+
+    </head>
+
+    <body>
+        <script src="js/materialize.js"></script>
+        <div id="main"> 
+
+
+
+            <div class="row">
+                <div id="source_only" class= "col s12 m6 l3 hidden">
+                    <div class="bluetxt" id="linktxt">
+                        <button id="startButton" class="bluetxt section col s12 ">Start</button>
+                        <div class="divider"></div>
+                        <button id="broadcast" class="bluetxt col s12  section">Broadcast</button>
+                        <div class="divider"></div>
+                        <button id="hangupButton" class="bluetxt col s12 section">End Broadcast</button>
+						
+						
+						<video class="black" id="localVideo" controls autoplay muted></video>
+                    </div>
+					
+                </div>
+                <div class="col s12 m6 l9 remote" id="" >
+                    <div>
+                        <div >
+                            
+                            <video controls class="black" id="remoteVideo" autoplay muted></video>
+                        </div>
+						
+                    </div>
+                </div>
+
+            </div>
+
+
+            <script>
+//function parseURLParams(url) {
+//    var queryStart = url.indexOf("?") + 1,
+//        queryEnd   = url.indexOf("#") + 1 || url.length + 1,
+//        query = url.slice(queryStart, queryEnd - 1),
+//        pairs = query.replace(/\+/g, " ").split("&"),
+//        parms = {}, i, n, v, nv;
+//
+//    if (query === url || query === "") return;
+//
+//    for (i = 0; i < pairs.length; i++) {
+//        nv = pairs[i].split("=", 2);
+//        n = decodeURIComponent(nv[0]);
+//        v = decodeURIComponent(nv[1]);
+//
+//        if (!parms.hasOwnProperty(n)) parms[n] = [];
+//        parms[n].push(nv.length === 2 ? v : null);
+//    }
+//    return parms;
+//}
+
+//var params = parseURLParams();
+
+var getUrlParameter = function getUrlParameter(sParam) {
+    var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+        sURLVariables = sPageURL.split('&'),
+        sParameterName,
+        i;
+
+    for (i = 0; i < sURLVariables.length; i++) {
+        sParameterName = sURLVariables[i].split('=');
+
+        if (sParameterName[0] === sParam) {
+            return sParameterName[1] === undefined ? true : sParameterName[1];
+        }
+    }
+};
+var issource = getUrlParameter('source');
+
+if(issource == 'true'){
+$('div#source_only').removeClass('hidden');
+}
+else{
+$('div.remote').width('100%');
+getR();
+}
+
+                var localStream, localPeerConnection, remotePeerConnection;
+
+                var localVideo = document.getElementById("localVideo");
+                var remoteVideo = document.getElementById("remoteVideo");
+
+                var startButton = document.getElementById("startButton");
+                var broadcast = document.getElementById("broadcast");
+                var hangupButton = document.getElementById("hangupButton");
+                startButton.disabled = false;
+                broadcast.disabled = true;
+                hangupButton.disabled = true;
+                startButton.onclick = start;
+                broadcast.onclick = call;
+                hangupButton.onclick = hangup;
+
+                function trace(text) {
+                    console.log((performance.now() / 1000).toFixed(3) + ": " + text);
+                }
+
+                function gotStream(stream) {
+                    trace("Received local stream");
+                    localVideo.src = URL.createObjectURL(stream);
+                    localStream = stream;
+                    broadcast.disabled = false;
+                }
+
+                function start() {
+                    trace("Requesting local stream");
+                    startButton.disabled = true;
+					$('#startButton:hover').css("color","black");
+                    getUserMedia({audio: true, video: true}, gotStream,
+                            function(error) {
+                                trace("getUserMedia error: ", error);
+                            });
+                }
+				
+				function getR(){
+				 $("#remoteVideo").show();
+                    trace("Starting call");
+                    var servers = null;
+
+                    localPeerConnection = new RTCPeerConnection(servers);
+                    trace("Created local peer connection object localPeerConnection");
+                    localPeerConnection.onicecandidate = gotLocalIceCandidate;
+
+                    remotePeerConnection = new RTCPeerConnection(servers);
+                    trace("Created remote peer connection object remotePeerConnection");
+                    remotePeerConnection.onicecandidate = gotRemoteIceCandidate;
+                    remotePeerConnection.onaddstream = gotRemoteStream;
+
+                   // localPeerConnection.addStream(localStream);
+                    //trace("Added localStream to localPeerConnection");
+                    //localPeerConnection.createOffer(gotLocalDescription, handleError);
+				}
+
+                function call() {
+				
+                    broadcast.disabled = true;
+					
+					$('#broadcast:hover').css("color","black");
+
+                    hangupButton.disabled = false;
+					$('#hangupButton:hover').css("color","black");
+
+                    $("#remoteVideo").show();
+                    trace("Starting call");
+
+                    if (localStream.getVideoTracks().length > 0) {
+                        trace('Using video device: ' + localStream.getVideoTracks()[0].label);
+                    }
+                    if (localStream.getAudioTracks().length > 0) {
+                        trace('Using audio device: ' + localStream.getAudioTracks()[0].label);
+                    }
+
+                    var servers = null;
+
+                    localPeerConnection = new RTCPeerConnection(servers);
+                    trace("Created local peer connection object localPeerConnection");
+                    localPeerConnection.onicecandidate = gotLocalIceCandidate;
+
+                    remotePeerConnection = new RTCPeerConnection(servers);
+                    trace("Created remote peer connection object remotePeerConnection");
+                    remotePeerConnection.onicecandidate = gotRemoteIceCandidate;
+                    remotePeerConnection.onaddstream = gotRemoteStream;
+
+                    localPeerConnection.addStream(localStream);
+                    trace("Added localStream to localPeerConnection");
+                    localPeerConnection.createOffer(gotLocalDescription, handleError);
+                }
+
+                function gotLocalDescription(description) {
+                    localPeerConnection.setLocalDescription(description);
+                    trace("Offer from localPeerConnection: \n" + description.sdp);
+                    remotePeerConnection.setRemoteDescription(description);
+                    remotePeerConnection.createAnswer(gotRemoteDescription, handleError);
+                }
+
+                function gotRemoteDescription(description) {
+                    remotePeerConnection.setLocalDescription(description);
+                    trace("Answer from remotePeerConnection: \n" + description.sdp);
+                    localPeerConnection.setRemoteDescription(description);
+                }
+
+                function hangup() {
+                    trace("Ending call");
+                    localPeerConnection.close();
+                    remotePeerConnection.close();
+                    localPeerConnection = null;
+                    remotePeerConnection = null;
+                    hangupButton.disabled = true;
+                    broadcast.disabled = false;
+                    $("#remoteVideo").hide();
+
+                }
+
+                function gotRemoteStream(event) {
+                    remoteVideo.src = URL.createObjectURL(event.stream);
+                    trace("Received remote stream");
+                }
+
+                function gotLocalIceCandidate(event) {
+                    if (event.candidate) {
+                        remotePeerConnection.addIceCandidate(new RTCIceCandidate(event.candidate));
+                        trace("Local ICE candidate: \n" + event.candidate.candidate);
+                    }
+                }
+
+                function gotRemoteIceCandidate(event) {
+                    if (event.candidate) {
+                        localPeerConnection.addIceCandidate(new RTCIceCandidate(event.candidate));
+                        trace("Remote ICE candidate: \n " + event.candidate.candidate);
+                    }
+                }
+
+                function handleError() {
+                }
+            </script>
+
+
+
+
+
+
+    </body>
+
+</html>
